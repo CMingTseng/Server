@@ -1,0 +1,164 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    compileSdkVersion 32
+    buildToolsVersion "32.0.0"
+    buildFeatures {
+        viewBinding true
+    }
+    defaultConfig {
+        applicationId "com.group.selfie"
+        minSdkVersion 23
+        targetSdkVersion 32
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        buildConfigField 'String', 'API_BASE_URL', '"http://127.0.0.1:8080"'
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/*'
+    }
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.+'
+//Ktor Server  test
+    testImplementation "io.ktor:ktor-server-core:2.1.2"
+    testImplementation "io.ktor:ktor-server-netty:2.1.2"
+
+    testImplementation "io.ktor:ktor-server-default-headers:2.1.2"
+
+    testImplementation "io.ktor:ktor-server-call-logging:2.1.2"
+    testImplementation "io.ktor:ktor-server-websockets:2.1.2"
+    testImplementation "io.ktor:ktor-server-content-negotiation:2.1.2"
+    testImplementation "io.ktor:ktor-serialization-gson:2.1.2"
+    testImplementation "io.ktor:ktor-serialization-kotlinx-json:2.1.2"//kotlinx.serialization
+    testImplementation "io.ktor:ktor-serialization-kotlinx-cbor:2.1.2"
+
+    testImplementation "io.ktor:ktor-server-status-pages:2.1.2"
+    testImplementation "io.ktor:ktor-server-request-validation:2.1.2"
+
+    testImplementation "io.ktor:ktor-server-cors:2.1.2"
+    testImplementation "io.ktor:ktor-server-compression:2.1.2"
+
+    testImplementation "io.ktor:ktor-server-content-negotiation-jvm:2.1.2"
+    testImplementation "io.ktor:ktor-serialization-kotlinx-json-jvm:2.1.2"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
+    testImplementation "dev.samstevens.totp:totp:1.7.1"
+
+    testImplementation "ch.qos.logback:logback-classic:1.4.3"
+    testImplementation "org.jetbrains.kotlin:kotlin-test:1.7.20"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:1.7.20"
+    testImplementation "io.ktor:ktor-server-tests-jvm:2.1.2"
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testImplementation "org.slf4j:slf4j-api:1.7.36"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    // coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+
+    implementation "androidx.core:core-ktx:$ktx_version"
+    implementation "androidx.appcompat:appcompat:$appcompat"
+    implementation "androidx.activity:activity-ktx:$activity_ktx_version"
+    implementation "com.google.android.material:material:$material"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayout"
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+
+    // Activity KTX for viewModels()
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$ktx_extensions_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$ktx_extensions_version"
+
+    implementation 'com.google.guava:guava:31.1-android'
+
+    //Flurry
+    implementation 'com.flurry.android:analytics:13.0.1'
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+    // dagger - Hilt
+    implementation "com.google.dagger:hilt-android:$dagger_hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$dagger_hilt_version"
+    kapt "androidx.hilt:hilt-compiler:$dagger_hilt_viewmodel_version"
+
+    // http
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_version"
+    //Gson
+    implementation "com.google.code.gson:gson:$gson_version"
+
+    //Timber
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
+    implementation "io.ktor:ktor-server-core:2.1.2"
+    implementation "io.ktor:ktor-server-netty:2.1.2"
+
+    implementation "io.ktor:ktor-server-default-headers:2.1.2"
+
+    implementation("io.ktor:ktor-server-call-logging:2.1.2")
+    implementation("io.ktor:ktor-server-websockets:2.1.2")
+    implementation("io.ktor:ktor-server-content-negotiation:2.1.2")
+    implementation("io.ktor:ktor-serialization-gson:2.1.2")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.1.2")//kotlinx.serialization
+    implementation("io.ktor:ktor-serialization-kotlinx-cbor:2.1.2")
+
+    implementation("io.ktor:ktor-server-status-pages:2.1.2")
+    implementation("io.ktor:ktor-server-request-validation:2.1.2")
+
+    implementation("io.ktor:ktor-server-cors:2.1.2")
+    implementation("io.ktor:ktor-server-compression:2.1.2")
+
+    implementation("io.ktor:ktor-server-content-negotiation-jvm:2.1.2")
+    implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:2.1.2")
+
+    implementation ("io.ktor:ktor-server-auth:2.1.2")
+    implementation ("io.ktor:ktor-server-auth-jwt:2.1.2")
+    implementation ("io.ktor:ktor-server-call-logging:2.1.2")
+
+    implementation "com.github.tony19:logback-android:2.0.0"
+
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+
+    implementation project(path: ':library')
+    implementation project(path: ':library_android')
+    implementation project(path: ':library_common_data')
+    implementation project(path: ':lib_github_api')
+    implementation project(path: ':lib_github_manager')
+    implementation project(path: ':lib_github_server')
+}

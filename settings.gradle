@@ -1,0 +1,15 @@
+rootProject.name = "AllServerDemo"
+include ':github'
+
+include ':library'
+project(":library").projectDir = file("./modules/library")
+include ':library_android'
+project(":library_android").projectDir = file("./modules/library_android")
+include ':library_common_data'
+project(":library_common_data").projectDir = file("./modules/library_common_data")
+include ':lib_github_api'
+project(":lib_github_api").projectDir = file("./modules/lib_github_api")
+include ':lib_github_server'
+project(":lib_github_server").projectDir = file("./modules/lib_github_server")
+include ':lib_github_manager'
+project(":lib_github_manager").projectDir = file("./modules/lib_github_manager")
